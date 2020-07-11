@@ -17,3 +17,15 @@ public struct DangerSwiftHammer<Danger: DangerData> {
     }
     
 }
+
+// MARK: - Internal Properties and Methods
+
+extension DangerSwiftHammer {
+    
+    func diffCommand(parsingFile: String) -> String {
+        
+        return #"git diff -- "\#(parsingFile)""#
+        
+    }
+    
+}
