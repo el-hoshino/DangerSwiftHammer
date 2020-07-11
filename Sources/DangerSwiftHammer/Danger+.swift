@@ -15,4 +15,10 @@ extension DangerDSL: DangerData {
         
     }
     
+    public func execShellCommand(_ command: String) -> String {
+                
+        return utils.exec(command)
+        
+    }
+    
 }

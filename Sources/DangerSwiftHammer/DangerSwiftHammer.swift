@@ -6,6 +6,7 @@
 //
 
 public protocol DangerData {
+    func execShellCommand(_ command: String) -> String
 }
 
 public struct DangerSwiftHammer<Danger: DangerData> {
@@ -14,6 +15,21 @@ public struct DangerSwiftHammer<Danger: DangerData> {
     
     init(danger: Danger) {
         self.danger = danger
+    }
+    
+}
+
+// MARK: - Public Properties and Methods
+
+extension DangerSwiftHammer {
+    
+    public func diffPatch(for filename: String) -> String {
+        
+        let command = diffCommand(parsingFile: filename)
+        let diff = danger.execShellCommand(command)
+        
+        return diff
+        
     }
     
 }
