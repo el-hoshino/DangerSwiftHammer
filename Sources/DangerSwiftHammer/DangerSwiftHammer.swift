@@ -32,6 +32,29 @@ extension DangerSwiftHammer {
         
     }
     
+    public func diffLines(in filename: String) -> (deletions: [String], additions: [String]) {
+        
+        let patch = diffPatch(for: filename)
+        
+        let diff = patch.components(separatedBy: "\n").reduce(into: Diff()) { (diff, line) in
+            
+            if line.hasPrefix("---") || line.hasPrefix("+++") {
+                return
+            }
+            
+            if line.hasPrefix("-") {
+                diff.deletions.append(line)
+                
+            } else if line.hasPrefix("+") {
+                diff.additions.append(line)
+            }
+            
+        }
+        
+        return (diff.deletions, diff.additions)
+        
+    }
+    
 }
 
 // MARK: - Internal Properties and Methods
@@ -44,4 +67,11 @@ extension DangerSwiftHammer {
         
     }
     
+}
+
+// MARK: - Private Types
+
+private struct Diff {
+    var deletions: [String] = []
+    var additions: [String] = []
 }
