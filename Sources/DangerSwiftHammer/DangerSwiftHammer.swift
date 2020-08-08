@@ -24,6 +24,10 @@ public struct DangerSwiftHammer<Danger: DangerData> {
 
 extension DangerSwiftHammer {
     
+    public var version: String {
+        "0.1.1"
+    }
+    
     public func diffPatch(for filename: String) -> String {
         
         let command = diffCommand(parsingFile: filename)
