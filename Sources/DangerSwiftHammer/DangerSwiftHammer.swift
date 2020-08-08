@@ -6,6 +6,7 @@
 //
 
 public protocol DangerData {
+    var baseBranch: String { get }
     func execShellCommand(_ command: String) -> String
 }
 
@@ -63,7 +64,7 @@ extension DangerSwiftHammer {
     
     func diffCommand(parsingFile: String) -> String {
         
-        return #"git diff -- "\#(parsingFile)""#
+        return #"git diff origin/\#(danger.baseBranch) -- "\#(parsingFile)""#
         
     }
     
