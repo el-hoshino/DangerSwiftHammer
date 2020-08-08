@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- File diff parsing is now against base branch.
+
 ## [ 0.1.0]
 
 ### Enhanced
