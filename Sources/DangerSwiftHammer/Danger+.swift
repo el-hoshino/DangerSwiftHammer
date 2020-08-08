@@ -15,6 +15,12 @@ extension DangerDSL: DangerData {
         
     }
     
+    public var baseBranch: String {
+        
+        github.pullRequest.base.ref
+        
+    }
+    
     public func execShellCommand(_ command: String) -> String {
                 
         return utils.exec(command)
