@@ -6,6 +6,7 @@ final class DangerSwiftHammerTests: XCTestCase {
     func testDiffCommand() {
         
         struct StubDanger: DangerData {
+            var baseBranch: String { "base_branch" }
             func execShellCommand(_ command: String) -> String { "" }
         }
         
@@ -14,7 +15,7 @@ final class DangerSwiftHammerTests: XCTestCase {
         let filename = "test.abc"
         
         let output = hammer.diffCommand(parsingFile: filename)
-        let expectedOutput = #"git diff -- "test.abc""#
+        let expectedOutput = #"git diff origin/base_branch -- "test.abc""#
         XCTAssertEqual(output, expectedOutput)
         
     }
@@ -22,6 +23,7 @@ final class DangerSwiftHammerTests: XCTestCase {
     func testDiffPatch() {
         
         struct StubDanger: DangerData {
+            var baseBranch: String { "base_branch" }
             func execShellCommand(_ command: String) -> String {
                 return "'\(command)' executed"
             }
@@ -32,7 +34,7 @@ final class DangerSwiftHammerTests: XCTestCase {
         let filename = "test.abc"
         
         let output = hammer.diffPatch(for: filename)
-        let expectedOutput = #"'git diff -- "test.abc"' executed"#
+        let expectedOutput = #"'git diff origin/base_branch -- "test.abc"' executed"#
         XCTAssertEqual(output, expectedOutput)
         
     }
@@ -40,6 +42,8 @@ final class DangerSwiftHammerTests: XCTestCase {
     func testDiffLines() {
         
         struct StubDanger: DangerData {
+            
+            var baseBranch: String { "" }
             
             func execShellCommand(_ command: String) -> String {
                 return """
