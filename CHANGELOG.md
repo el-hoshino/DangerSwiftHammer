@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Plugin unable to be imported by SwiftPM
+
 ## [0.1.1] - 2020-08-09
 
 ### Fixed
