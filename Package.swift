@@ -10,7 +10,7 @@ let package = Package(
         .library(
             name: "DangerSwiftHammer",
             targets: ["DangerSwiftHammer"]),
-        .library(name: "DangerDeps", type: .dynamic, targets: ["DangerDependencies"]), // dev
+//        .library(name: "DangerDeps", type: .dynamic, targets: ["DangerDependencies"]), // dev
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,6 +29,6 @@ let package = Package(
         .testTarget(
             name: "DangerSwiftHammerTests",
             dependencies: ["DangerSwiftHammer"]),
-        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerXCodeSummary", "DangerSwiftCoverage"]), // dev
+//        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerXCodeSummary", "DangerSwiftCoverage"]), // dev
     ]
 )
