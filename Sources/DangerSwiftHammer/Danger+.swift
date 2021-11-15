@@ -7,11 +7,11 @@
 
 import Danger
 
-extension DangerDSL: DangerData {
+extension DangerDSL: DangerDSLCompatible {
     
-    public var hammer: DangerSwiftHammer<DangerDSL> {
+    public var hammer: Hammer<DangerDSL> {
         
-        return DangerSwiftHammer(danger: self)
+        return Hammer(danger: self)
         
     }
     
