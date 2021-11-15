@@ -5,13 +5,13 @@ final class DangerSwiftHammerTests: XCTestCase {
     
     func testDiffCommand() {
         
-        struct StubDanger: DangerData {
+        struct StubDanger: DangerDSLCompatible {
             var baseBranch: String { "base_branch" }
             func execShellCommand(_ command: String) -> String { "" }
         }
         
         let danger = StubDanger()
-        let hammer = DangerSwiftHammer(danger: danger)
+        let hammer = Hammer(danger: danger)
         let filename = "test.abc"
         
         let output = hammer.diffCommand(parsingFile: filename)
@@ -22,7 +22,7 @@ final class DangerSwiftHammerTests: XCTestCase {
         
     func testDiffPatch() {
         
-        struct StubDanger: DangerData {
+        struct StubDanger: DangerDSLCompatible {
             var baseBranch: String { "base_branch" }
             func execShellCommand(_ command: String) -> String {
                 return "'\(command)' executed"
@@ -30,7 +30,7 @@ final class DangerSwiftHammerTests: XCTestCase {
         }
         
         let danger = StubDanger()
-        let hammer = DangerSwiftHammer(danger: danger)
+        let hammer = Hammer(danger: danger)
         let filename = "test.abc"
         
         let output = hammer.diffPatch(for: filename)
@@ -41,7 +41,7 @@ final class DangerSwiftHammerTests: XCTestCase {
     
     func testDiffLines() {
         
-        struct StubDanger: DangerData {
+        struct StubDanger: DangerDSLCompatible {
             
             var baseBranch: String { "" }
             
@@ -78,7 +78,7 @@ final class DangerSwiftHammerTests: XCTestCase {
         }
         
         let danger = StubDanger()
-        let hammer = DangerSwiftHammer(danger: danger)
+        let hammer = Hammer(danger: danger)
         
         let output = hammer.diffLines(in: "")
         let expectedOutput: (deletions: [String], additions: [String]) = (
