@@ -464,6 +464,8 @@ private extension String {
 }
 
 // MARK: - Check routine
+/*
+ * Temporarily disable danger for this product for workflow switching from Git-Flow to GitHub-Flow
 let danger = Danger()
 
 // If there's any modification in bootstrap.sh file, ask the reviewer to check if he needs to update Bitrise workflows.
@@ -506,4 +508,4 @@ do {
 } catch {
     fail("Failed to find out the correct check routine. Please check if your PR is created from or into a correct branch.")
 }
-
+*/
