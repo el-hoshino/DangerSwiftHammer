@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2021-11-16
+
+### Changed
+
+- Swift toolchain version is now updated from 5.1 to 5.3
+
 ### Fixed
 
 - Plugin unable to be imported by SwiftPM
