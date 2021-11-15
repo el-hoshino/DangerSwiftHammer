@@ -5,12 +5,12 @@
 //  Created by 史 翔新 on 2020/07/11.
 //
 
-public protocol DangerData {
+public protocol DangerDSLCompatible {
     var baseBranch: String { get }
     func execShellCommand(_ command: String) -> String
 }
 
-public struct Hammer<Danger: DangerData> {
+public struct Hammer<Danger: DangerDSLCompatible> {
     
     private let danger: Danger
     
