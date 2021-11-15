@@ -1,16 +1,16 @@
 //
-//  DangerSwiftHammer.swift
+//  Hammer.swift
 //
 //
 //  Created by 史 翔新 on 2020/07/11.
 //
 
-public protocol DangerData {
+public protocol DangerDSLCompatible {
     var baseBranch: String { get }
     func execShellCommand(_ command: String) -> String
 }
 
-public struct DangerSwiftHammer<Danger: DangerData> {
+public struct Hammer<Danger: DangerDSLCompatible> {
     
     private let danger: Danger
     
@@ -22,7 +22,7 @@ public struct DangerSwiftHammer<Danger: DangerData> {
 
 // MARK: - Public Properties and Methods
 
-extension DangerSwiftHammer {
+extension Hammer {
     
     public func diffPatch(for filename: String) -> String {
         
@@ -60,7 +60,7 @@ extension DangerSwiftHammer {
 
 // MARK: - Internal Properties and Methods
 
-extension DangerSwiftHammer {
+extension Hammer {
     
     func diffCommand(parsingFile: String) -> String {
         
