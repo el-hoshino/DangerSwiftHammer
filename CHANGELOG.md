@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2021-11-16
+
+### Changed
+
+- DangerDSLCompatible is now deprecated because the interfaces exposed by the protocol are not supposed to be able for users at first place.
+  This protocol will be removed at next minor release.
+
 ## [0.2.0] - 2021-11-16
 
 ### Changed
