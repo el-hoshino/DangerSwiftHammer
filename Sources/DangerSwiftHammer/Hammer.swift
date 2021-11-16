@@ -5,18 +5,16 @@
 //  Created by 史 翔新 on 2020/07/11.
 //
 
+@available(*, deprecated, message: "This protocol is not intended to be used on user-side. Just use provided `danger.hammer.xxx` methods.")
 public protocol DangerDSLCompatible {
     var baseBranch: String { get }
     func execShellCommand(_ command: String) -> String
 }
 
-public struct Hammer<Danger: DangerDSLCompatible> {
+public struct Hammer {
     
-    private let danger: Danger
-    
-    init(danger: Danger) {
-        self.danger = danger
-    }
+    let baseBranchResolver: () -> String
+    let shellCommandExecutor: (String) -> String
     
 }
 
@@ -27,7 +25,7 @@ extension Hammer {
     public func diffPatch(for filename: String) -> String {
         
         let command = diffCommand(parsingFile: filename)
-        let diff = danger.execShellCommand(command)
+        let diff = shellCommandExecutor(command)
         
         return diff
         
@@ -64,7 +62,7 @@ extension Hammer {
     
     func diffCommand(parsingFile: String) -> String {
         
-        return #"git diff origin/\#(danger.baseBranch) -- "\#(parsingFile)""#
+        return #"git diff origin/\#(baseBranchResolver()) -- "\#(parsingFile)""#
         
     }
     
