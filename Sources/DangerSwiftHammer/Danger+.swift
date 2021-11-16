@@ -7,13 +7,8 @@
 
 import Danger
 
+@available(*, deprecated)
 extension DangerDSL: DangerDSLCompatible {
-    
-    public var hammer: Hammer<DangerDSL> {
-        
-        return Hammer(danger: self)
-        
-    }
     
     public var baseBranch: String {
         
@@ -24,6 +19,17 @@ extension DangerDSL: DangerDSLCompatible {
     public func execShellCommand(_ command: String) -> String {
                 
         return utils.exec(command)
+        
+    }
+    
+}
+
+extension DangerDSL {
+    
+    public var hammer: Hammer {
+        
+        return .init(baseBranchResolver: { github.pullRequest.base.ref },
+                     shellCommandExecutor: { utils.exec($0) })
         
     }
     
